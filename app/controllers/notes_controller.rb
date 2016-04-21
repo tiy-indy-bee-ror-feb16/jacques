@@ -4,4 +4,17 @@ class NotesController < ApplicationController
     @notes = Note.all
   end
 
+  def create
+    @note = Note.new(note_params)
+    if @note.save
+    else
+    end
+  end
+
+  private
+
+  def note_params
+    params.permit(:title, :body)
+  end
+
 end
