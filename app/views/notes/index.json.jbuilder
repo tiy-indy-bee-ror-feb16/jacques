@@ -1,4 +1,4 @@
-json.notes
+json.notes do
   json.array! @notes do |note|
     json.(note, :title, :body, :created_at, :updated_at)
     json.tags do
@@ -7,3 +7,4 @@ json.notes
       end
     end
   end
+end
