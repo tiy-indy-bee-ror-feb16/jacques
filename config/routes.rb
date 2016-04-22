@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :users
   scope '/api' do
     resources :notes, defaults: { format: 'json' }
   end
