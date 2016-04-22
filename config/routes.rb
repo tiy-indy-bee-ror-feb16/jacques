@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # resources :notes, path: 'api', as: :notes
-  get  '/api/notes' => 'notes#index',  as: :root
+  root                 'notes#index'
+  get  '/api/notes' => 'notes#index'
   post '/api/notes' => 'notes#create', as: :new_note
-  get '/api/notes/tag/:name' => 'notes#show', as: :by_tag
+  # get  '/api/notes/tag/:name' => 'tags#show', as: :notes_by_tag
+  #^^ NOT WORKING, NEXT TASK!!
 end
