@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
+  def generate_api_token
+    self.api_token = SecureRandom.hex(20)
+  end
+
   private
 
   def email_is_valid_format
@@ -17,10 +21,6 @@ class User < ApplicationRecord
 
   def downcase_email
     email.downcase! if email
-  end
-
-  def generate_api_token
-    self.api_token = SecureRandom.hex(20)
   end
 
 end
