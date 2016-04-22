@@ -25,35 +25,36 @@ class ExplorerTest < ActionDispatch::IntegrationTest
   def test_tag_lists_are_correct
     note = Note.first
     get "/api/notes/tag/#{note.tags.first.name}"
+    puts response.body
     json = JSON.parse(response.body)
     assert_equal note.tags.first.name, json['tag']['name']
     assert_equal example_note(Note.first), json['notes'].first
   end
 
-  # def test_tag_create_is_correct
-  #   post '/api/notes',
-  #     params: {
-  #       title:  "My created post",
-  #       body:   "My created body",
-  #       tags:   "api, machine, first"
-  #     }
-  #   json = JSON.parse(response.body)
-  #   assert_equal "My created post", json['note']['title']
-  #   assert_equal 11, Note.count
-  #   assert_equal 3, json['note']['tags'].length
-  # end
-  #
-  # def test_improper_note
-  #   post '/api/notes',
-  #     params: {
-  #       title:  "",
-  #       body:   "My created body",
-  #       tags:   "api, machine, first"
-  #     }
-  #   assert_equal 400, status
-  #   json = JSON.parse(response.body)
-  #   assert_equal "Title can't be blank", json['errors'].first['error']
-  # end
+  def test_tag_create_is_correct
+    post '/api/notes',
+      params: {
+        title:  "My created post",
+        body:   "My created body",
+        tags:   "api, machine, first"
+      }
+    json = JSON.parse(response.body)
+    assert_equal "My created post", json['note']['title']
+    assert_equal 11, Note.count
+    assert_equal 3, json['note']['tags'].length
+  end
+
+  def test_improper_note
+    post '/api/notes',
+      params: {
+        title:  "",
+        body:   "My created body",
+        tags:   "api, machine, first"
+      }
+    assert_equal 400, status
+    json = JSON.parse(response.body)
+    assert_equal "Title can't be blank", json['errors'].first['error']
+  end
 
 
   private
