@@ -1,13 +1,19 @@
 class NotesController < ApplicationController
+  before_action :authenticate_user
 
   def index
-    @notes = Note.all
+    if @user
+      @notes = Note.where("user_id = ?", @user.id)
+    else
+      @notes = Note.all
+    end
   end
 
   def create
     @note = Note.new(note_params)
+    @note.user_id = @user.id if @user
     if @note.save
-      add_tags(@note)
+      add_tags(@note) if params[:tags]
       render :show, status: :created
     else
       render :errors, status: 400
