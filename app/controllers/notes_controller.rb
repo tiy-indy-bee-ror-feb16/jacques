@@ -18,7 +18,7 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      render :show, status: :created, location: @note
+
     else
       render json: @note.errors, status: :unprocessable_entity
     end
