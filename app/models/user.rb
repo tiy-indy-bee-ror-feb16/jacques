@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validate :email_is_valid_format
   before_validation :downcase_email
-  after_validation :generate_authentication_token
+  after_validation :generate_api_token
 
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
@@ -21,7 +21,7 @@ class User < ApplicationRecord
     email.downcase! if email
   end
 
-  def generate_authentication_token
+  def generate_api_token
     self.api_token = SecureRandom.hex(20)
   end
 
