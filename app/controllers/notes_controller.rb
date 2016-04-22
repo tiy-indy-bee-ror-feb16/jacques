@@ -20,6 +20,25 @@ class NotesController < ApplicationController
     end
   end
 
+  def update
+    if @user
+      @note = Note.find(params[:id])
+      if @note && @note.user_id == @user.id
+        if @note.update_attributes(note_params)
+          add_tags(@note) if params[:tags]
+          render :show, status: 200
+        else
+          render :errors, status: 400
+        end
+      else
+        @note.errors.add(:note, "- you don't own it")
+        render :errors, status: 400
+      end
+    else
+      render :nothing => true, :status => 400
+    end
+  end
+
   private
 
   def note_params
