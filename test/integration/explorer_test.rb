@@ -52,6 +52,7 @@ class ExplorerTest < ActionDispatch::IntegrationTest
       }
     assert_equal 400, status
     json = JSON.parse(response.body)
+    puts json
     assert_equal "Title can't be blank", json['errors'].first['error']
   end
 
