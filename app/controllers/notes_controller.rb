@@ -20,7 +20,7 @@ class NotesController < ApplicationController
     if @note.save
 
     else
-      render json: @note.errors, status: :unprocessable_entity
+      render :errors, status: 400
     end
   end
 

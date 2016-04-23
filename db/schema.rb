@@ -35,14 +35,10 @@ ActiveRecord::Schema.define(version: 20160422180935) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
-    t.integer  "note_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "tags", ["note_id"], name: "index_tags_on_note_id", using: :btree
-
   add_foreign_key "taggings", "notes"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "tags", "notes"
 end
