@@ -4,15 +4,11 @@ class Note < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  # method reference http://www.sitepoint.com/tagging-scratch-rails/
-  def all_tags=(names)
-    self.tags = names.split(",").map do |name|
-      Tag.where(name: name.strip).first_or_create!
+  def tags=(tag_string)
+    tag_array = tag_string.split(",").map do |t|
+      Tag.find_or_create_by(name: t.downcase.strip)
     end
-  end
-
-  def all_tags
-    self.tags.map(&:name).join(",")
+    super(tag_array)
   end
 
 end
