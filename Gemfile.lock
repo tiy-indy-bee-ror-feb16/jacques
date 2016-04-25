@@ -42,6 +42,7 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.4)
+    coderay (1.1.1)
     concurrent-ruby (1.0.1)
     database_cleaner (1.5.2)
     erubis (2.7.0)
@@ -78,7 +79,12 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
-    puma (3.4.0)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     rack (2.0.0.alpha)
       json
     rack-test (0.6.3)
@@ -103,6 +109,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.0.0.beta3)
       actionpack (= 5.0.0.beta3)
       activesupport (= 5.0.0.beta3)
@@ -119,6 +130,7 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    slop (3.6.0)
     spring (1.7.1)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -150,8 +162,10 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
   pg (~> 0.18)
-  puma
+  pry
+  pry-rails
   rails (>= 5.0.0.beta3, < 5.1)
+  rails_12factor
   shoulda
   spring
   spring-watcher-listen (~> 2.0.0)
